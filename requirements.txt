@@ -16,6 +16,7 @@ idna==2.8
 networkx==2.4
 oauthlib==3.1.0
 Pillow==7.0.0
+psycopg2
 py-moneyed==0.8.0
 PyJWT==1.7.1
 python-social-auth==0.3.6
