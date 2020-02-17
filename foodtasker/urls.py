@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^restaurant/orders/$', views.restaurant_orders, name = 'restaurant-orders'),
     url(r'^restaurant/report/$', views.restaurant_report, name = 'restaurant-report'),
 
+    url(r'^api/restaurant/orders/notification/(?P<last_request_time>.+)/$', apis.restaurant_order_notification),
     url(r'^api/customer/restaurants/$', apis.customer_get_restaurant),
     url(r'^api/customer/meals/(?P<restaurant_id>\d+)/$', apis.customer_get_meals),
     url(r'^api/customer/order/add/$', apis.customer_add_order),
