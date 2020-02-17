@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from foodtaskerapp import views
+from foodtaskerapp import views, apis
 from django.contrib.auth.views import LoginView, LogoutView
 from django.conf.urls import url
 
@@ -21,7 +21,9 @@ urlpatterns = [
     url(r'^restaurant/account/$', views.restaurant_account, name = 'restaurant-account'),
     url(r'^restaurant/meals/$', views.restaurant_meals, name = 'restaurant-meals'),
     url(r'^restaurant/meals/add/$', views.restaurant_add_meals, name = 'restaurant-add-meals'),
+    url(r'^restaurant/meals/edit/(?P<meal_id>\d+)/$', views.restaurant_edit_meals, name = 'restaurant-edit-meals'),
     url(r'^restaurant/orders/$', views.restaurant_orders, name = 'restaurant-orders'),
     url(r'^restaurant/report/$', views.restaurant_report, name = 'restaurant-report'),
+    url(r'^api/customer/restaurants/$', apis.customer_get_restaurant)
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
