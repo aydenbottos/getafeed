@@ -3,6 +3,7 @@ import json
 from django.utils import timezone
 from django.http import JsonResponse
 from oauth2_provider.models import AccessToken
+from django.views.decorators.csrf import csrf_exempt
 
 from foodtaskerapp.models import Restaurant, Meal, Order, OrderDetails
 from foodtaskerapp.serializers import RestaurantSerializer, MealSerializer
@@ -25,6 +26,7 @@ def customer_get_meals(request, restaurant_id):
 
     return JsonResponse({"meals": meals})
 
+@csrf_exempt
 def customer_add_order(request):
     """
         params:
@@ -42,7 +44,7 @@ def customer_add_order(request):
     if request.method == "POST":
         # Get token
         access_token = AccessToken.objects.get(token = request.POST.get("access_token"),
-            expires_gt = timezone.now())
+            expires__gt = timezone.now())
 
         # Get profile
         customer = access_token.user.customer
@@ -56,11 +58,11 @@ def customer_add_order(request):
             return JsonResponse({"status": "fail", "error": "You must provide an address to order."})
 
         # Get Order Details
-        order_details = json.load(request.POST["order_details"])
+        order_details = json.loads(request.POST["order_details"])
 
         order_total = 0
         for meal in order_details:
-            order_total += Meal.objects.get(id = meal["meal_id"].price * meal["quantity"])
+            order_total += Meal.objects.get(id = meal["meal_id"]).price * meal["quantity"]
 
         if len(order_details) > 0:
             # Step 1 - Create an Order
@@ -91,6 +93,6 @@ def customer_get_latest_order(request):
 
 def restaurant_order_notification(request, last_request_time):
     notification = Order.objects.filter(restaurant = request.user.restaurant,
-        create_at_gt = last_request_time).count()
+        created_at__gt = last_request_time).count()
 
     return JsonResponse({"notification": notification})

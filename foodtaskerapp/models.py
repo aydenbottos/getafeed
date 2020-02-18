@@ -57,7 +57,7 @@ class Order(models.Model):
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, blank = True, null = True)
     address = models.CharField(max_length=500)
     total = MoneyField(max_digits=10, decimal_places=2, default_currency='AUD')
     status = models.IntegerField(choices = STATUS_CHOICES)
