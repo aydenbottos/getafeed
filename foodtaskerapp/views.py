@@ -42,10 +42,10 @@ def restaurant_meals(request):
 
 @login_required(login_url='/restaurant/sign-in/')
 def restaurant_add_meals(request):
-    form = MealForm()
+    form = MealsForm()
 
     if request.method == "POST":
-        form = MealForm(request.POST, request.FILES)
+        form = MealsForm(request.POST, request.FILES)
 
         if form.is_valid():
             meal = form.save(commit=False)

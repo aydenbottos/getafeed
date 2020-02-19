@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'social_django',
     'rest_framework_social_oauth2',
     'bootstrap3',
-    'djmoney'
+    'djmoney',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -134,6 +135,10 @@ LOGIN_REDIRECT_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = 'og_cJlCpGD4AAAAAAAABUOivlvsC1ZHV_a3i5OuW0EpkxqGKxoZl2R51pC6iORPF'
+DROPBOX_ROOT_PATH = 'media'
+
 import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
@@ -166,3 +171,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
+
+STRIPE_API_KEY = 'sk_test_FHmazC6QJylP9D81vxhpeLkv00wqaaRCdk'
