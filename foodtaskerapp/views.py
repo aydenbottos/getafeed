@@ -51,7 +51,7 @@ def restaurant_add_meals(request):
             meal = form.save(commit=False)
             meal.restaurant = request.user.restaurant
             meal.save()
-            return redirect(restaurant_meal)
+            return redirect(restaurant_meals)
 
     return render(request, 'restaurant/add_meal.html', {
         "form": form
