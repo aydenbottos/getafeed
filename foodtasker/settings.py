@@ -25,7 +25,7 @@ SECRET_KEY = '57^b%o8f6w(8=jwtgk2jf#lbm4l8e)r3pfcgstfm8j5#&xfmp1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['serene-woodland-18585.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['serene-woodland-18585.herokuapp.com', 'localhost', 'app.getafeed.com.au']
 
 
 # Application definition
