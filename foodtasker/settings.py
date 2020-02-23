@@ -135,9 +135,8 @@ LOGIN_REDIRECT_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DROPBOX_OAUTH2_TOKEN = 'og_cJlCpGD4AAAAAAAABUOivlvsC1ZHV_a3i5OuW0EpkxqGKxoZl2R51pC6iORPF'
-DROPBOX_ROOT_PATH = 'media'
+DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
+FTP_STORAGE_LOCATION = 'ftp://ayden@evolveproperty.net.au:ayden@ftp.evolveproperty.net.au:21'
 
 import dj_database_url
 db_from_env = dj_database_url.config()

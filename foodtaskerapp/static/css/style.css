@@ -44,15 +44,15 @@ body {
   font-weight: bold;
   font-size: 15px;
   background-color: #383957;
-  }
+}
 
-  .sidebar > div:first-child > h4 {
-    color: #e0deeb;
-  }
+.sidebar > div:first-child > h4 {
+  color: #e0deeb;
+}
 
-  .sidebar > div:first-child > h5 {
-    color: #b6b4c1;
-  }
+.sidebar > div:first-child > h5 {
+  color: #b6b4c1;
+}
 
 /* SIDE BAR - LIST */
 .sidebar .list-group {

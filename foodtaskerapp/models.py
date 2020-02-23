@@ -2,6 +2,8 @@ from djmoney.models.fields import MoneyField
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from storages.backends.ftp import FTPStorage
+fs = FTPStorage()
 
 # Create your models here.
 class Restaurant(models.Model):
@@ -9,7 +11,7 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=500)
     phone = models.CharField(max_length=500)
     address = models.CharField(max_length=500)
-    logo = models.ImageField(upload_to='restaurant_logo/', blank=False)
+    logo = models.ImageField(upload_to='restaurant_images/', blank=False, storage=fs)
 
     def __str__(self):
         return self.name
@@ -36,7 +38,7 @@ class Meal(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     name = models.CharField(max_length=500)
     short_description = models.CharField(max_length=500)
-    image = models.ImageField(upload_to='meal_images/', blank=False)
+    image = models.ImageField(upload_to='meal_images/', blank=False, storage=fs)
     price = MoneyField(max_digits=10, decimal_places=2, default_currency='AUD')
 
     def __str__(self):
